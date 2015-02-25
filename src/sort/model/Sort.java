@@ -6,10 +6,20 @@ public class Sort implements Comparable
 {
 
 	@Override
-	public int compareTo(Object arg0)
+	public int compareTo(Object object)
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		int comparedValue = 0;
+		
+		
+		/**
+		 * instance of, if the object IS AN Object
+		 */
+		if(object instanceof Object)
+		{
+			
+		}
+		
+		return comparedValue;
 	}
 
 }
