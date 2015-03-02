@@ -9,7 +9,6 @@ public class SortRunner
 	{
 		SortController mySort = new  SortController();
 		mySort.start();
-
 	}
 
 }

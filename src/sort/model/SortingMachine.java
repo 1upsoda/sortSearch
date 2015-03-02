@@ -1,66 +1,8 @@
-package sort.controller;
+package sort.model;
 
-import javax.swing.JOptionPane;
-
-import sort.model.Sort;
-import sort.view.SortFrame;
-
-public class SortController
+public class SortingMachine
 {
 
-	private int [] integers;
-	private double [] reals;
-	private String [] words;
-	private SortFrame appFrame;
-	
-	public SortController()
-	{
-		
-	}
-	
-	public void start()
-	{
-		fillTheArrays();
-		
-		selectionSort(integers);
-		
-//		System.out.println();
-		
-	}
-
-	private void fillTheArrays()
-	{
-		fillTheIntArray();
-		filltheDoubleArray();
-		fillTheStringArray();
-		
-	}
-	
-	private void fillTheStringArray()
-	{
-		
-		
-	}
-
-	private void filltheDoubleArray()
-	{
-		
-		
-	}
-
-	private void fillTheIntArray()
-	{
-		String displayInt = "";
-		integers = new int [3000];
-		for(int start = 0 ; start < integers.length; start++)
-		{
-			integers[start] = (int) (Math.random() * 36000);
-			
-			displayInt += "" +integers[start]+ ", ";
-			
-		}
-		System.out.println(displayInt);
-	}
 	private long startTime;
 	private long endTime;
 	private long sortTime;
@@ -75,8 +17,6 @@ public class SortController
 
 		int minimum;
 		int minimumPosition;
-		int newNumber = 0;
-		String displayIntSort = "";
 		/**
 		 * the time it starts
 		 */
@@ -110,14 +50,9 @@ public class SortController
 				swap(toBeSorted, position, minimumPosition);
 			}
 			
-			displayIntSort += "" +toBeSorted[newNumber]+ ", ";
-			newNumber++;
-			
 		}
 		endTime = System.currentTimeMillis();
 		sortTime = endTime - startTime;
-		System.out.println(displayIntSort);
-		System.out.println(sortingTime(sortTime));
 		return toBeSorted;
 	}
 
@@ -141,5 +76,11 @@ public class SortController
 		return timeToSort;
 		
 	}
+	public void start()
+	{
+		
+	}
+	
+	
 	
 }

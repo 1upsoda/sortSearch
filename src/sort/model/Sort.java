@@ -4,6 +4,7 @@ import sort.model.Sort;
 
 public class Sort implements Comparable
 {
+	
 
 	@Override
 	public int compareTo(Object object)
