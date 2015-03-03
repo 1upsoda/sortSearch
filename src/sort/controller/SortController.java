@@ -12,6 +12,9 @@ public class SortController
 	private double [] reals;
 	private String [] words;
 	private SortFrame appFrame;
+	private long startTime;
+	private long endTime;
+	private long sortTime;
 	
 	public SortController()
 	{
@@ -22,7 +25,13 @@ public class SortController
 	{
 		fillTheArrays();
 		
+		System.out.println(displayTheArray(integers));
+		
 		selectionSort(integers);
+		
+		System.out.println(displayTheArray(integers));
+		
+		System.out.println(sortingTime(sortTime));
 		
 //		System.out.println();
 		
@@ -50,20 +59,21 @@ public class SortController
 
 	private void fillTheIntArray()
 	{
-		String displayInt = "";
-		integers = new int [3000];
+		startTime = System.currentTimeMillis();
+//		String displayInt = "";
+		integers = new int [5000];
 		for(int start = 0 ; start < integers.length; start++)
 		{
-			integers[start] = (int) (Math.random() * 36000);
+			integers[start] = (int) (Math.random() * 50000);
 			
-			displayInt += "" +integers[start]+ ", ";
+//			displayInt += "" +integers[start]+ ", ";
 			
 		}
-		System.out.println(displayInt);
+		endTime = System.currentTimeMillis();
+		sortTime = endTime - startTime;
+//		System.out.println(displayInt);
 	}
-	private long startTime;
-	private long endTime;
-	private long sortTime;
+	
 	
 	public long getSortTime()
 	{
@@ -75,8 +85,8 @@ public class SortController
 
 		int minimum;
 		int minimumPosition;
-		int newNumber = 0;
-		String displayIntSort = "";
+//		int newNumber = 0;
+//		String displayIntSort = "";
 		/**
 		 * the time it starts
 		 */
@@ -110,14 +120,14 @@ public class SortController
 				swap(toBeSorted, position, minimumPosition);
 			}
 			
-			displayIntSort += "" +toBeSorted[newNumber]+ ", ";
-			newNumber++;
+//			displayIntSort += "" +toBeSorted[newNumber]+ ", ";
+//			newNumber++;
 			
 		}
 		endTime = System.currentTimeMillis();
 		sortTime = endTime - startTime;
-		System.out.println(displayIntSort);
-		System.out.println(sortingTime(sortTime));
+//		System.out.println(displayIntSort);
+		
 		return toBeSorted;
 	}
 
@@ -139,6 +149,19 @@ public class SortController
 		timeToSort += "Milliseconds: " + sortTime % 1000 + "\n";
 		
 		return timeToSort;
+		
+	}
+	public String displayTheArray(int [] arrayToDisplay)
+	{
+		String displayInt = "Array: ";
+		for(int start = 0 ; start < arrayToDisplay.length; start++)
+		{
+			
+			
+			displayInt += "" +arrayToDisplay[start]+ ", ";
+			
+		}
+		return displayInt;
 		
 	}
 	
