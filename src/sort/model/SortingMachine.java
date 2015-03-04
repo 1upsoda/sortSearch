@@ -17,6 +17,8 @@ public class SortingMachine
 
 		int minimum;
 		int minimumPosition;
+//		int newNumber = 0;
+//		String displayIntSort = "";
 		/**
 		 * the time it starts
 		 */
@@ -50,9 +52,14 @@ public class SortingMachine
 				swap(toBeSorted, position, minimumPosition);
 			}
 			
+//			displayIntSort += "" +toBeSorted[newNumber]+ ", ";
+//			newNumber++;
+			
 		}
 		endTime = System.currentTimeMillis();
 		sortTime = endTime - startTime;
+//		System.out.println(displayIntSort);
+		
 		return toBeSorted;
 	}
 
@@ -81,6 +88,19 @@ public class SortingMachine
 		
 	}
 	
+	public String displayTheArray(int [] arrayToDisplay)
+	{
+		String displayInt = "Array: ";
+		for(int start = 0 ; start < arrayToDisplay.length; start++)
+		{
+			
+			
+			displayInt += "" +arrayToDisplay[start]+ ", ";
+			
+		}
+		return displayInt;
+		
+	}
 	
 	
 }
