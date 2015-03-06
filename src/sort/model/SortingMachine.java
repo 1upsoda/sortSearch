@@ -11,7 +11,7 @@ public class SortingMachine
 	{
 		return sortTime;
 	}
-	
+	// do selection sort for the strings, the object, and the reals.
 	public int[] selectionSort(int [] toBeSorted)
 	{
 
@@ -59,7 +59,7 @@ public class SortingMachine
 		endTime = System.currentTimeMillis();
 		sortTime = endTime - startTime;
 //		System.out.println(displayIntSort);
-		
+		System.out.println(sortingTime(sortTime));
 		return toBeSorted;
 	}
 
@@ -88,6 +88,41 @@ public class SortingMachine
 		
 	}
 	
+	public Weapon [] selectionSort(Weapon [] sortTheWeapons)
+	{
+		int maximumPosition;
+		Weapon maximum;
+		startTime = System.currentTimeMillis();
+		for(int position = 0; position < sortTheWeapons.length; position++)
+		{
+			maximumPosition = position;
+			maximum = sortTheWeapons[position];
+			for(int next = position+1; next<sortTheWeapons.length; next++)
+			{
+				if(sortTheWeapons[next].compareTo(maximum) > 0)
+				{
+					maximum = sortTheWeapons[next];
+					maximumPosition = next;
+				}
+			}
+			if(maximumPosition != position)
+			{
+				swap(sortTheWeapons, position, maximumPosition);
+			}
+		}
+		endTime = System.currentTimeMillis();
+		sortTime = endTime - startTime;
+		System.out.println(sortingTime(sortTime));
+		
+		return sortTheWeapons;
+	}
+	
+	private void swap(Weapon [] array, int position, int change)
+	{
+		Weapon temp = array[position];
+		array[position] = array[change];
+		array[change] = temp;
+	}
 	public String displayTheArray(int [] arrayToDisplay)
 	{
 		String displayInt = "Array: ";
@@ -99,6 +134,32 @@ public class SortingMachine
 			
 		}
 		return displayInt;
+		
+	}
+	public String displayTheWordArray(String [] arrayToDisplay)
+	{
+		String displayString = "Array: ";
+		for(int start = 0 ; start < arrayToDisplay.length; start++)
+		{
+			
+			
+			displayString += "" +arrayToDisplay[start]+ ", ";
+			
+		}
+		return displayString;
+		
+	}
+	public String displayTheWeaponArray(Weapon [] arrayToDisplay)
+	{
+		String displayWeapon = "Array: ";
+		for(int start = 0 ; start < arrayToDisplay.length; start++)
+		{
+			
+			
+			displayWeapon += "" +arrayToDisplay[start]+ ", ";
+			
+		}
+		return displayWeapon;
 		
 	}
 	

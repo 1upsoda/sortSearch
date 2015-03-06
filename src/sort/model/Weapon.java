@@ -40,16 +40,26 @@ public class Weapon implements Comparable
 	{
 		String weaponString = "";
 		
-		weaponString += "Hi, *Heads* I am a Sword object. *Heaaads* My name *heads heads heads* is: " + name + ".";
-		weaponString += " My damage I *Heads* do right now (including critical hit chance) is: " + damagePerSecond + " and ";
+//		weaponString += "Hi, *Heads* I am a Sword object. *Heaaads* My name *heads heads heads* is: " + name + ".";
+//		weaponString += " My damage I *Heads* do in 4 seconds (including critical hit chance) is: " + damagePerSecond + " and ";
+//		if(canTakeHeads)
+//		{
+//			weaponString += "HEADS! HEADS! HEADS!";
+//		}
+//		else
+//		{
+//			weaponString += "I don't take Heads, but I still like them...";
+//		}
+		weaponString += "Name: " +name+ ".";
+		weaponString += "DPS over 4: " +damagePerSecond+ " and ";
 		if(canTakeHeads)
-		{
-			weaponString += "HEADS! HEADS! HEADS!";
-		}
-		else
-		{
-			weaponString += "I don't take Heads, but I still like them...";
-		}
+			{
+				weaponString += "HEADS!";
+			}
+			else
+			{
+				weaponString += "I don't";
+			}
 		return weaponString;
 	}
 	
