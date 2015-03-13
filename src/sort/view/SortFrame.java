@@ -25,7 +25,7 @@ public class SortFrame extends JFrame
 
 		setLocation(5, 6);
 
-		setSize(400, 400);
+		setSize(1000, 1000);
 
 		setResizable(false);
 

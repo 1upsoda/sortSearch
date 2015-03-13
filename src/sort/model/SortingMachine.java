@@ -63,6 +63,56 @@ public class SortingMachine
 		return toBeSorted;
 	}
 
+	public double[] selectionSort(double [] toBeSorted)
+	{
+
+		double minimum;
+		int minimumPosition;
+//		int newNumber = 0;
+//		String displayIntSort = "";
+		/**
+		 * the time it starts
+		 */
+		startTime = System.currentTimeMillis();
+		/**
+		 * goes through the entire sorting array
+		 */
+		for(int position = 0; position < toBeSorted.length; position++)
+		{
+			/**
+			 * sets the default
+			 */
+			minimumPosition = position;
+			minimum = toBeSorted[position];
+			for(int next = position +1; next <toBeSorted.length; next ++)
+			{
+				/**
+				 * sees if the next one is smaller, and can set it as smaller
+				 */
+				if(toBeSorted[next] < minimum)
+				{
+					minimum = toBeSorted[next];
+					minimumPosition = next;
+				}
+			}
+			/**
+			 * swaps the new stuff
+			 */
+			if(minimumPosition != position)
+			{
+				swap(toBeSorted, position, minimumPosition);
+			}
+			
+//			displayIntSort += "" +toBeSorted[newNumber]+ ", ";
+//			newNumber++;
+			
+		}
+		endTime = System.currentTimeMillis();
+		sortTime = endTime - startTime;
+//		System.out.println(displayIntSort);
+		System.out.println(sortingTime(sortTime));
+		return toBeSorted;
+	}
 	private void swap(int[] array, int position, int change)
 	{
 		int temp = array[position];
@@ -116,6 +166,56 @@ public class SortingMachine
 		
 		return sortTheWeapons;
 	}
+	public String[] selectionSort(String [] toBeSorted)
+	{
+
+		String minimum;
+		int minimumPosition;
+//		int newNumber = 0;
+//		String displayIntSort = "";
+		/**
+		 * the time it starts
+		 */
+		startTime = System.currentTimeMillis();
+		/**
+		 * goes through the entire sorting array
+		 */
+		for(int position = 0; position < toBeSorted.length; position++)
+		{
+			/**
+			 * sets the default
+			 */
+			minimumPosition = position;
+			minimum = toBeSorted[position];
+			for(int next = position +1; next <toBeSorted.length; next ++)
+			{
+				/**
+				 * sees if the next one is smaller, and can set it as smaller
+				 */
+				if(toBeSorted[next].compareTo(minimum) > 0)
+				{
+					minimum = toBeSorted[next];
+					minimumPosition = next;
+				}
+			}
+			/**
+			 * swaps the new stuff
+			 */
+			if(minimumPosition != position)
+			{
+				swap(toBeSorted, position, minimumPosition);
+			}
+			
+//			displayIntSort += "" +toBeSorted[newNumber]+ ", ";
+//			newNumber++;
+			
+		}
+		endTime = System.currentTimeMillis();
+		sortTime = endTime - startTime;
+//		System.out.println(displayIntSort);
+		System.out.println(sortingTime(sortTime));
+		return toBeSorted;
+	}
 	
 	private void swap(Weapon [] array, int position, int change)
 	{
@@ -123,7 +223,32 @@ public class SortingMachine
 		array[position] = array[change];
 		array[change] = temp;
 	}
+	private void swap(double [] array, int position, int change)
+	{
+		double temp = array[position];
+		array[position] = array[change];
+		array[change] = temp;
+	}
+	private void swap(String [] array, int position, int change)
+	{
+		String temp = array[position];
+		array[position] = array[change];
+		array[change] = temp;
+	}
 	public String displayTheArray(int [] arrayToDisplay)
+	{
+		String displayInt = "Array: ";
+		for(int start = 0 ; start < arrayToDisplay.length; start++)
+		{
+			
+			
+			displayInt += "" +arrayToDisplay[start]+ ", ";
+			
+		}
+		return displayInt;
+		
+	}
+	public String displayTheDoubleArray(double [] arrayToDisplay)
 	{
 		String displayInt = "Array: ";
 		for(int start = 0 ; start < arrayToDisplay.length; start++)

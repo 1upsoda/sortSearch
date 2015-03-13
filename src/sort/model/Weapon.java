@@ -3,7 +3,7 @@ package sort.model;
 public class Weapon implements Comparable
 {
 	private String name;
-	private int damagePerSecond;
+	private int damagePerSecond, fireRate;
 	private boolean canTakeHeads;
 	public String getName()
 	{
@@ -29,11 +29,12 @@ public class Weapon implements Comparable
 	{
 		this.canTakeHeads = canTakeHeads;
 	}
-	public Weapon(String name, int damagePerSecond, boolean canTakeHeads)
+	public Weapon(String name, int damagePerSecond, boolean canTakeHeads, int fireRate)
 	{
 		this.name = name;
 		this.damagePerSecond = damagePerSecond;
 		this.canTakeHeads = canTakeHeads;
+		this.fireRate = fireRate;
 		
 	}
 	public String toString()
@@ -50,16 +51,17 @@ public class Weapon implements Comparable
 //		{
 //			weaponString += "I don't take Heads, but I still like them...";
 //		}
-		weaponString += "Name: " +name+ ".";
-		weaponString += "DPS over 4: " +damagePerSecond+ " and ";
+		weaponString += "Name: " +name+ ". ";
+		weaponString += "Damage over 4 seconds: " +damagePerSecond+ ". And ";
 		if(canTakeHeads)
-			{
-				weaponString += "HEADS!";
-			}
-			else
-			{
-				weaponString += "I don't";
-			}
+		{
+			weaponString += "HEADS!";
+		}
+		else
+		{
+			weaponString += "I don't take heads.";
+		}
+		weaponString += " Also, fire rate is: " +fireRate+ ".";
 		return weaponString;
 	}
 	
@@ -94,6 +96,14 @@ public class Weapon implements Comparable
 		
 		return comparedValue;
 		
+	}
+	public int getFireRate()
+	{
+		return fireRate;
+	}
+	public void setFireRate(int fireRate)
+	{
+		this.fireRate = fireRate;
 	}
 
 }
