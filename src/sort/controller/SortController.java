@@ -36,7 +36,10 @@ public class SortController
 		/**
 		 * fills the different array that we want to sort (size of int array, randomization of int array)
 		 */
-		fillTheArrays(100, 500, 100, 100, 100, 1000);
+		// 1: size of int array, 2: from 0 to XXXX of randomization in the int array, 3: size of double array
+		// 4: size of the word array, 5: size of the weapons array 
+		// 6: size of the Rock Paper Scissors victory chart array (currently unused)
+		fillTheArrays(100, 500, 100, 1000, 100, 1000);
 		
 		/**
 		 * prints the numbers inside the number array
