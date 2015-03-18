@@ -11,6 +11,39 @@ public class SortingMachine
 	{
 		return sortTime;
 	}
+	public void quickSort(int [] intArray, int lo, int hi)
+	{
+		
+		if(lo<hi)
+		{
+			int pivoting = partition(intArray, lo, hi);
+			quickSort(intArray, lo, pivoting - 1);
+			quickSort(intArray, pivoting + 1, hi);
+		}
+		
+	}
+	private int partition(int[] intArray, int lo, int hi)
+	{
+		int pivotIndex = choosePivot(intArray, lo, hi);
+		int pivotValue = intArray[pivotIndex];
+		swap(intArray, pivotIndex, hi);
+		int storeIndex = lo;
+		for(int i = lo; i < hi; i++)
+		{
+			if(intArray[i] < pivotValue)
+			{
+				swap(intArray, i, storeIndex);
+				storeIndex = storeIndex+1;
+			}
+		}
+		swap(intArray, storeIndex, hi);
+		return storeIndex;
+	}
+	public int choosePivot(int [] intArray, int lo, int hi)
+	{
+		int pivotInt = (hi+lo)/2;
+		return pivotInt;
+	}
 	// do selection sort for the strings, the object, and the reals.
 	public int[] selectionSort(int [] toBeSorted)
 	{
@@ -63,6 +96,8 @@ public class SortingMachine
 		return toBeSorted;
 	}
 
+	
+	
 	public double[] selectionSort(double [] toBeSorted)
 	{
 
@@ -287,6 +322,7 @@ public class SortingMachine
 		return displayWeapon;
 		
 	}
+	
 	
 	
 }

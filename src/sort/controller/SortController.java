@@ -39,7 +39,7 @@ public class SortController
 		// 1: size of int array, 2: from 0 to XXXX of randomization in the int array, 3: size of double array
 		// 4: size of the word array, 5: size of the weapons array 
 		// 6: size of the Rock Paper Scissors victory chart array (currently unused)
-		fillTheArrays(100, 500, 100, 1000, 100, 1000);
+		fillTheArrays(10000, 50000, 100, 1000, 100, 1000);
 		
 		/**
 		 * prints the numbers inside the number array
@@ -48,26 +48,50 @@ public class SortController
 		/**
 		 * sorts the integer array
 		 */
-		baseController.selectionSort(integers);
+		startTime = System.currentTimeMillis();
+		baseController.quickSort(integers, 0, integers.length-1);
 		/**
 		 * prints the newly sorted array
 		 */
 		System.out.println(baseController.displayTheArray(integers));
+		endTime= System.currentTimeMillis();
+		sortTime = endTime-startTime;
+		System.out.println("quicksort");
+		System.out.println(baseController.sortingTime(sortTime));
 		/**
 		 * tells the time it took to sort the array
 		 */
+		fillTheArrays(100000, 50000, 100, 1000, 100, 1000);
 		
+		/**
+		 * prints the numbers inside the number array
+		 */
+		System.out.println(baseController.displayTheArray(integers));
+		/**
+		 * sorts the integer array
+		 */
+		startTime = System.currentTimeMillis();
+		baseController.quickSort(integers, 0, integers.length-1);
+		/**
+		 * prints the newly sorted array
+		 */
+		System.out.println(baseController.displayTheArray(integers));
+		endTime= System.currentTimeMillis();
+		sortTime = endTime-startTime;
+		System.out.println("select sort");
+		System.out.println(baseController.sortingTime(sortTime));
 		
-		System.out.println(baseController.displayTheWeaponArray(myWeapon));
-		baseController.selectionSort(myWeapon);
-		System.out.println(baseController.displayTheWeaponArray(myWeapon));
-		System.out.println(baseController.displayTheWordArray(words));
-		baseController.selectionSort(words);
-		System.out.println(baseController.displayTheWordArray(words));
-
-		System.out.println(baseController.displayTheDoubleArray(reals));
-		baseController.selectionSort(reals);
-		System.out.println(baseController.displayTheDoubleArray(reals));
+//		
+//		System.out.println(baseController.displayTheWeaponArray(myWeapon));
+//		baseController.selectionSort(myWeapon);
+//		System.out.println(baseController.displayTheWeaponArray(myWeapon));
+//		System.out.println(baseController.displayTheWordArray(words));
+//		baseController.selectionSort(words);
+//		System.out.println(baseController.displayTheWordArray(words));
+//
+//		System.out.println(baseController.displayTheDoubleArray(reals));
+//		baseController.selectionSort(reals);
+//		System.out.println(baseController.displayTheDoubleArray(reals));
 	}
 
 	/**
@@ -76,9 +100,9 @@ public class SortController
 	private void fillTheArrays(int sizeOfIntArray, int randomizationOfIntArray, int doubleArraySize, int wordArraySize, int weaponArraySize, int rpsArraySize)
 	{
 		fillTheIntArray(sizeOfIntArray, randomizationOfIntArray);
-		fillTheDoubleArray(doubleArraySize);
-		fillTheStringArray(wordArraySize);
-		fillTheWeaponArray(weaponArraySize);
+		//fillTheDoubleArray(doubleArraySize);
+		//fillTheStringArray(wordArraySize);
+		//fillTheWeaponArray(weaponArraySize);
 //		fillTheRPSArray(rpsArraySize);
 		
 	}
