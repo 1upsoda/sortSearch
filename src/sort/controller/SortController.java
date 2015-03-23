@@ -33,53 +33,68 @@ public class SortController
 	public void start()
 	{
 		
-		/**
-		 * fills the different array that we want to sort (size of int array, randomization of int array)
-		 */
-		// 1: size of int array, 2: from 0 to XXXX of randomization in the int array, 3: size of double array
-		// 4: size of the word array, 5: size of the weapons array 
-		// 6: size of the Rock Paper Scissors victory chart array (currently unused)
-		fillTheArrays(10000, 50000, 100, 1000, 100, 1000);
-		
-		/**
-		 * prints the numbers inside the number array
-		 */
-		System.out.println(baseController.displayTheArray(integers));
-		/**
-		 * sorts the integer array
-		 */
-		startTime = System.currentTimeMillis();
-		baseController.quickSort(integers, 0, integers.length-1);
-		/**
-		 * prints the newly sorted array
-		 */
-		System.out.println(baseController.displayTheArray(integers));
-		endTime= System.currentTimeMillis();
-		sortTime = endTime-startTime;
-		System.out.println("quicksort");
-		System.out.println(baseController.sortingTime(sortTime));
-		/**
-		 * tells the time it took to sort the array
-		 */
-		fillTheArrays(100000, 50000, 100, 1000, 100, 1000);
-		
-		/**
-		 * prints the numbers inside the number array
-		 */
-		System.out.println(baseController.displayTheArray(integers));
-		/**
-		 * sorts the integer array
-		 */
-		startTime = System.currentTimeMillis();
-		baseController.quickSort(integers, 0, integers.length-1);
-		/**
-		 * prints the newly sorted array
-		 */
-		System.out.println(baseController.displayTheArray(integers));
-		endTime= System.currentTimeMillis();
-		sortTime = endTime-startTime;
-		System.out.println("select sort");
-		System.out.println(baseController.sortingTime(sortTime));
+//		/**
+//		 * fills the different array that we want to sort (size of int array, randomization of int array)
+//		 */
+//		// 1: size of int array, 2: from 0 to XXXX of randomization in the int array, 3: size of double array
+//		// 4: size of the word array, 5: size of the weapons array 
+//		// 6: size of the Rock Paper Scissors victory chart array (currently unused)
+//		fillTheArrays(5000, 2000, 100, 1000, 10000, 1000);
+//		
+//		/**
+//		 * prints the numbers inside the number array
+//		 */
+//		System.out.println(baseController.displayTheArray(integers));
+//		/**
+//		 * sorts the integer array
+//		 */
+//		startTime = System.currentTimeMillis();
+//		baseController.quickSort(integers, 0, integers.length-1);
+//		/**
+//		 * prints the newly sorted array
+//		 */
+//		System.out.println(baseController.displayTheArray(integers));
+//		endTime= System.currentTimeMillis();
+//		sortTime = endTime-startTime;
+//		System.out.println("quicksort");
+//		System.out.println(baseController.sortingTime(sortTime));
+//		/**
+//		 * tells the time it took to sort the array
+//		 */
+		fillTheArrays(100, 100, 100, 100, 100, 100);
+//		
+//		/**
+//		 * prints the numbers inside the number array
+//		 */
+//		System.out.println(baseController.displayTheArray(integers));
+//		/**
+//		 * sorts the integer array
+//		 */
+//		startTime = System.currentTimeMillis();
+//		baseController.quickSort(integers, 0, integers.length-1);
+//		/**
+//		 * prints the newly sorted array
+//		 */
+//		System.out.println(baseController.displayTheArray(integers));
+//		endTime= System.currentTimeMillis();
+//		sortTime = endTime-startTime;
+//		System.out.println("select sort");
+//		System.out.println(baseController.sortingTime(sortTime));
+//		
+//		System.out.println(baseController.displayTheWeaponArray(myWeapon));
+//		/**
+//		 * sorts the integer array
+//		 */
+//		startTime = System.currentTimeMillis();
+//		baseController.quickSort(myWeapon, 0, myWeapon.length-1);
+//		/**
+//		 * prints the newly sorted array
+//		 */
+//		System.out.println(baseController.displayTheWeaponArray(myWeapon));
+//		endTime= System.currentTimeMillis();
+//		sortTime = endTime-startTime;
+//		System.out.println("quicksort");
+//		System.out.println(baseController.sortingTime(sortTime));
 		
 //		
 //		System.out.println(baseController.displayTheWeaponArray(myWeapon));
@@ -97,12 +112,12 @@ public class SortController
 	/**
 	 * fills all of the arrays
 	 */
-	private void fillTheArrays(int sizeOfIntArray, int randomizationOfIntArray, int doubleArraySize, int wordArraySize, int weaponArraySize, int rpsArraySize)
+	public void fillTheArrays(int sizeOfIntArray, int randomizationOfIntArray, int doubleArraySize, int wordArraySize, int weaponArraySize, int rpsArraySize)
 	{
 		fillTheIntArray(sizeOfIntArray, randomizationOfIntArray);
-		//fillTheDoubleArray(doubleArraySize);
-		//fillTheStringArray(wordArraySize);
-		//fillTheWeaponArray(weaponArraySize);
+//		fillTheDoubleArray(doubleArraySize);
+		fillTheStringArray(wordArraySize);
+		fillTheWeaponArray(weaponArraySize);
 //		fillTheRPSArray(rpsArraySize);
 		
 	}
@@ -193,9 +208,9 @@ public class SortController
 		startTime = System.currentTimeMillis();
 //		String displayInt = "";
 		reals = new double [arraySize];
-		for(int start = 0 ; start < integers.length; start++)
+		for(int start = 0 ; start < integers.length-1; start++)
 		{
-			reals[start] = (Math.random() * 2);
+			reals[start] = (Math.random() * 10);
 			
 //			displayInt += "" +integers[start]+ ", ";
 			
@@ -425,6 +440,16 @@ public class SortController
 		endTime = System.currentTimeMillis();
 		sortTime = endTime - startTime;
 //		System.out.println(displayInt);
+	}
+
+	public int[] getIntegers()
+	{
+		return integers;
+	}
+
+	public void setIntegers(int[] integers)
+	{
+		this.integers = integers;
 	}
 	
 	

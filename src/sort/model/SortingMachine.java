@@ -11,6 +11,12 @@ public class SortingMachine
 	{
 		return sortTime;
 	}
+	/**
+	 * quick sort for int
+	 * @param intArray
+	 * @param lo
+	 * @param hi
+	 */
 	public void quickSort(int [] intArray, int lo, int hi)
 	{
 		
@@ -41,7 +47,46 @@ public class SortingMachine
 	}
 	public int choosePivot(int [] intArray, int lo, int hi)
 	{
-		int pivotInt = (hi+lo)/2;
+		int pivotInt = ((hi+lo)/2);
+		return pivotInt;
+	}
+	/**
+	 * quick sort for objects
+	 * @param intArray
+	 * @param lo
+	 * @param hi
+	 */
+	public void quickSort(Weapon [] weaponArray, int lo, int hi)
+	{
+		
+		if(lo<hi)
+		{
+			int pivoting = partition(weaponArray, lo, hi);
+			quickSort(weaponArray, lo, pivoting - 1);
+			quickSort(weaponArray, pivoting + 1, hi);
+		}
+		
+	}
+	private int partition(Weapon[] weaponArray, int lo, int hi)
+	{
+		int pivotIndex = choosePivot(weaponArray, lo, hi);
+		Weapon pivotValue = weaponArray[pivotIndex];
+		swap(weaponArray, pivotIndex, hi);
+		int storeIndex = lo;
+		for(int i = lo; i < hi; i++)
+		{
+			if(weaponArray[i].compareTo(pivotValue) > 0)
+			{
+				swap(weaponArray, i, storeIndex);
+				storeIndex = storeIndex+1;
+			}
+		}
+		swap(weaponArray, storeIndex, hi);
+		return storeIndex;
+	}
+	public int choosePivot(Weapon [] weaponArray, int lo, int hi)
+	{
+		int pivotInt = ((hi+lo)/2);
 		return pivotInt;
 	}
 	// do selection sort for the strings, the object, and the reals.
@@ -148,12 +193,7 @@ public class SortingMachine
 		System.out.println(sortingTime(sortTime));
 		return toBeSorted;
 	}
-	private void swap(int[] array, int position, int change)
-	{
-		int temp = array[position];
-		array[position] = array[change];
-		array[change] = temp;
-	}
+	
 	
 	public String sortingTime(long sortTime)
 	{
@@ -251,7 +291,12 @@ public class SortingMachine
 		System.out.println(sortingTime(sortTime));
 		return toBeSorted;
 	}
-	
+	private void swap(int[] array, int position, int change)
+	{
+		int temp = array[position];
+		array[position] = array[change];
+		array[change] = temp;
+	}
 	private void swap(Weapon [] array, int position, int change)
 	{
 		Weapon temp = array[position];
