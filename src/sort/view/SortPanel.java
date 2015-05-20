@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import sort.controller.SortController;
 import sort.model.Sort;
 import sort.model.SortingMachine;
+import sort.model.Weapon;
 
 public class SortPanel extends JPanel
 {
@@ -35,7 +36,13 @@ public class SortPanel extends JPanel
 	private JLabel lblWeaponArraySize;
 	private JLabel lblRpsArraySize;
 	private int [] integers;
+	private Weapon [] myWeapon;
+	private double [] reals;
+	private String [] words;
 	private SortingMachine theMachine;
+	private long startTime;
+	private long endTime;
+	private long sortTime;
 	
 	
 	
@@ -47,11 +54,17 @@ public class SortPanel extends JPanel
 		baseLayout = new SpringLayout();
 		displayArea = new JTextArea(10,30);
 		displayPane = new JScrollPane(displayArea);
+		
+		baseLayout.putConstraint(SpringLayout.NORTH, displayPane, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, displayPane, 10, SpringLayout.WEST, this);
 		integers = baseController.getIntegers();
 		theMachine = new SortingMachine();
 		baseController.fillTheArrays(100,100,100,100,100,100);
 		integers = baseController.getIntegers();
 		scrambleButton = new JButton();
+		baseLayout.putConstraint(SpringLayout.NORTH, scrambleButton, 364, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, scrambleButton, 80, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, displayPane, -6, SpringLayout.NORTH, scrambleButton);
 		scrambleButton.setText("Scramble");
 		quickSortButton = new JButton();
 		quickSortButton.setText("Quick Sort");
@@ -60,14 +73,23 @@ public class SortPanel extends JPanel
 		selectSortButton = new JButton();
 		selectSortButton.setText("Select Sort");
 		chckbxRpsArray = new JCheckBox("RPS Array");
+		baseLayout.putConstraint(SpringLayout.WEST, chckbxRpsArray, 80, SpringLayout.WEST, this);
 		chckbxWeaponArray = new JCheckBox("Weapon Array");
+		baseLayout.putConstraint(SpringLayout.WEST, chckbxWeaponArray, 80, SpringLayout.WEST, this);
 		chckbxWordArray = new JCheckBox("Word Array");
+		baseLayout.putConstraint(SpringLayout.WEST, chckbxWordArray, 80, SpringLayout.WEST, this);
 		chckbxDoubleArray = new JCheckBox("Double Array");
+		baseLayout.putConstraint(SpringLayout.WEST, chckbxDoubleArray, 80, SpringLayout.WEST, this);
 		chckbxIntArray = new JCheckBox("Int Array");
+		baseLayout.putConstraint(SpringLayout.WEST, chckbxIntArray, 80, SpringLayout.WEST, this);
 		btnFillArrays = new JButton("Fill Arrays");
 		txtIntArraySize = new JTextField();
+		baseLayout.putConstraint(SpringLayout.NORTH, txtIntArraySize, 141, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, txtIntArraySize, 460, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, displayPane, -6, SpringLayout.WEST, txtIntArraySize);
 		txtIntArraySize.setText("100");
 		lblIntArraySize = new JLabel();
+		baseLayout.putConstraint(SpringLayout.NORTH, lblIntArraySize, 141, SpringLayout.NORTH, this);
 		lblIntArraySize.setText("Int Array Size");
 		txtIntArrayRandom = new JTextField();
 		txtIntArrayRandom.setText("100");
@@ -166,19 +188,12 @@ public class SortPanel extends JPanel
 	}
 	private void setupLayout()
 	{
-		
-		baseLayout.putConstraint(SpringLayout.NORTH, displayPane, 141, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, displayPane, 80, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, scrambleButton, 37, SpringLayout.SOUTH, displayPane);
 		baseLayout.putConstraint(SpringLayout.NORTH, quickSortButton, 0, SpringLayout.NORTH, scrambleButton);
 		baseLayout.putConstraint(SpringLayout.WEST, quickSortButton, 6, SpringLayout.EAST, scrambleButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, searchButton, 0, SpringLayout.NORTH, scrambleButton);
 		baseLayout.putConstraint(SpringLayout.WEST, searchButton, 6, SpringLayout.EAST, quickSortButton);
-		baseLayout.putConstraint(SpringLayout.WEST, scrambleButton, 0, SpringLayout.WEST, displayPane);
 		baseLayout.putConstraint(SpringLayout.NORTH, selectSortButton, 6, SpringLayout.SOUTH, quickSortButton);
 		baseLayout.putConstraint(SpringLayout.WEST, selectSortButton, 0, SpringLayout.WEST, quickSortButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, txtIntArraySize, 0, SpringLayout.NORTH, displayPane);
-		baseLayout.putConstraint(SpringLayout.WEST, txtIntArraySize, 134, SpringLayout.EAST, displayPane);
 		txtIntArraySize.setColumns(10);
 		baseLayout.putConstraint(SpringLayout.NORTH, txtIntArrayRandom, 6, SpringLayout.SOUTH, txtIntArraySize);
 		baseLayout.putConstraint(SpringLayout.WEST, txtIntArrayRandom, 0, SpringLayout.WEST, txtIntArraySize);
@@ -198,19 +213,27 @@ public class SortPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.NORTH, btnFillArrays, 6, SpringLayout.SOUTH, txtRpsArraySize);
 		baseLayout.putConstraint(SpringLayout.WEST, btnFillArrays, 0, SpringLayout.WEST, txtIntArraySize);
 		baseLayout.putConstraint(SpringLayout.NORTH, chckbxIntArray, 50, SpringLayout.SOUTH, selectSortButton);
-		baseLayout.putConstraint(SpringLayout.WEST, chckbxIntArray, 0, SpringLayout.WEST, displayPane);
 		baseLayout.putConstraint(SpringLayout.NORTH, chckbxDoubleArray, 6, SpringLayout.SOUTH, chckbxIntArray);
-		baseLayout.putConstraint(SpringLayout.WEST, chckbxDoubleArray, 0, SpringLayout.WEST, displayPane);
 		baseLayout.putConstraint(SpringLayout.NORTH, chckbxWordArray, 6, SpringLayout.SOUTH, chckbxDoubleArray);
-		baseLayout.putConstraint(SpringLayout.WEST, chckbxWordArray, 0, SpringLayout.WEST, displayPane);
 		baseLayout.putConstraint(SpringLayout.NORTH, chckbxWeaponArray, 6, SpringLayout.SOUTH, chckbxWordArray);
-		baseLayout.putConstraint(SpringLayout.WEST, chckbxWeaponArray, 0, SpringLayout.WEST, displayPane);
 		baseLayout.putConstraint(SpringLayout.NORTH, chckbxRpsArray, 6, SpringLayout.SOUTH, chckbxWeaponArray);
-		baseLayout.putConstraint(SpringLayout.WEST, chckbxRpsArray, 0, SpringLayout.WEST, displayPane);
-		baseLayout.putConstraint(SpringLayout.NORTH, lblIntArraySize, 0, SpringLayout.NORTH, displayPane);
 		baseLayout.putConstraint(SpringLayout.WEST, lblIntArraySize, 6, SpringLayout.EAST, txtIntArraySize);
 		
 	}
+	
+	private boolean makeSureHasNumbers(String userText)
+	{
+		boolean hasNumbers = false;
+		
+		if(userText.contains("0") || userText.contains("1") || userText.contains("2") || userText.contains("3") || userText.contains("4") || userText.contains("5") || userText.contains("6") || userText.contains("7") || userText.contains("8") || userText.contains("9"))
+		{
+			hasNumbers = true;
+		}
+		
+		
+		return hasNumbers;
+	}
+	
 	private void setupListeners()
 	{
 		scrambleButton.addActionListener(new ActionListener()
@@ -226,10 +249,61 @@ public class SortPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				integers = baseController.getIntegers();
-				theMachine.quickSort(integers, 0, integers.length-1);
-				displayTextToUser("done sorting");
-				integers = baseController.getIntegers();
+				if(chckbxIntArray.isSelected())
+				{
+					startTime = System.currentTimeMillis();
+					integers = baseController.getIntegers();
+					theMachine.quickSort(integers, 0, integers.length-1);
+					displayTextToUser("done sorting");
+					endTime = System.currentTimeMillis();
+					sortTime = endTime-startTime;
+					displayTextToUser(theMachine.sortingTime(sortTime));
+					integers = baseController.getIntegers();
+				}
+				if(chckbxWeaponArray.isSelected())
+				{
+					startTime = System.currentTimeMillis();
+					myWeapon = baseController.getMyWeapon();
+					theMachine.quickSort(myWeapon, 0, myWeapon.length-1);
+					displayTextToUser("done sorting");
+					endTime = System.currentTimeMillis();
+					sortTime = endTime-startTime;
+					displayTextToUser(theMachine.sortingTime(sortTime));
+					myWeapon = baseController.getMyWeapon();
+				}
+				if(chckbxDoubleArray.isSelected())
+				{
+					startTime = System.currentTimeMillis();
+					reals = baseController.getReals();
+					theMachine.quickSort(reals, 0, reals.length-1);
+					displayTextToUser("done sorting");
+					endTime = System.currentTimeMillis();
+					sortTime = endTime-startTime;
+					displayTextToUser(theMachine.sortingTime(sortTime));
+					reals = baseController.getReals();
+				}
+				if(chckbxWordArray.isSelected())
+				{
+					startTime = System.currentTimeMillis();
+					words = baseController.getWords();
+					theMachine.quickSort(words, 0, words.length-1);
+					displayTextToUser("done sorting");
+					endTime = System.currentTimeMillis();
+					sortTime = endTime-startTime;
+					displayTextToUser(theMachine.sortingTime(sortTime));
+					words = baseController.getWords();
+				}
+//				if(chckbxRpsArray.isSelected())
+//				{
+//					startTime = System.currentTimeMillis();
+//					myWeapon = baseController.getMyWeapon();
+//					theMachine.quickSort(myWeapon, 0, myWeapon.length-1);
+//					displayTextToUser("done sorting");
+//					endTime = System.currentTimeMillis();
+//					sortTime = endTime-startTime;
+//					displayTextToUser(theMachine.sortingTime(sortTime));
+//					myWeapon = baseController.getMyWeapon();
+//				}
 				
 			}
 		});
@@ -237,8 +311,78 @@ public class SortPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
+				int intSize = 10;
+				int intRandom = 10;
+				int doubleSize = 10;
+				int wordSize = 10;
+				int weaponSize = 10;
+				int RPSSize = 10;
+				boolean hasNumbers = true;
+				String noNumberFields = "";
+				if(makeSureHasNumbers(txtIntArraySize.getText()))
+				{
+					intSize = Integer.parseInt(txtIntArraySize.getText().replaceAll("[\\D]", ""));
+				}
+				else
+				{
+					hasNumbers = false;
+					noNumberFields += "Int, ";
+				}
+				if(makeSureHasNumbers(txtIntArrayRandom.getText()))
+				{
+					intRandom = Integer.parseInt(txtIntArrayRandom.getText().replaceAll("[\\D]", ""));
+				}
+				else
+				{
+					hasNumbers = false;
+					noNumberFields += "Int randomness, ";
+				}
+				if(makeSureHasNumbers(txtDoubleArraySize.getText()))
+				{
+					doubleSize = Integer.parseInt(txtDoubleArraySize.getText().replaceAll("[\\D]", ""));
+				}
+				else
+				{
+					hasNumbers = false;
+					noNumberFields += "Double, ";
+				}
+				if(makeSureHasNumbers(txtWordArraySize.getText()))
+				{
+					wordSize = Integer.parseInt(txtWordArraySize.getText().replaceAll("[\\D]", ""));
+				}
+				else
+				{
+					hasNumbers = false;
+					noNumberFields += "Word, ";
+				}
+				if(makeSureHasNumbers(txtWeaponArraySize.getText()))
+				{
+					weaponSize = Integer.parseInt(txtWeaponArraySize.getText().replaceAll("[\\D]", ""));
+				}
+				else
+				{
+					hasNumbers = false;
+					noNumberFields += "Weapon, ";
+				}
+				if(makeSureHasNumbers(txtRpsArraySize.getText()))
+				{
+					RPSSize = Integer.parseInt(txtRpsArraySize.getText().replaceAll("[\\D]", ""));
+				}
+				else
+				{
+					hasNumbers = false;
+					noNumberFields += "RPS";
+				}
+				if(hasNumbers)
+				{
+					
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null,"No Numbers! " +noNumberFields+ " Array(s) now filled to 10");
+				}
 				integers = baseController.getIntegers();
-				baseController.fillTheArrays(100,100,100,100,100,100);
+				baseController.fillTheArrays(intSize,intRandom,doubleSize,wordSize,weaponSize,RPSSize);
 				displayTextToUser("filled Arrays");
 				integers = baseController.getIntegers();
 				
@@ -248,9 +392,27 @@ public class SortPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				integers = baseController.getIntegers();
-				displayTextToUser(theMachine.displayTheArray(integers));
 				
+				if(chckbxIntArray.isSelected())
+				{
+					integers = baseController.getIntegers();
+					displayTextToUser(theMachine.displayTheArray(integers));
+				}
+				if(chckbxWeaponArray.isSelected())
+				{
+					myWeapon = baseController.getMyWeapon();
+					displayTextToUser(theMachine.displayTheWeaponArray(myWeapon));
+				}
+				if(chckbxDoubleArray.isSelected())
+				{
+					reals = baseController.getReals();
+					displayTextToUser(theMachine.displayTheDoubleArray(reals));
+				}
+				if(chckbxWordArray.isSelected())
+				{
+					words = baseController.getWords();
+					displayTextToUser(theMachine.displayTheWordArray(words));
+				}
 			}
 		});
 		

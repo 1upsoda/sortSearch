@@ -1,5 +1,7 @@
 package sort.controller;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 import sort.view.SortFrame;
@@ -17,6 +19,7 @@ public class SortController
 	private String [] words;
 	private Weapon[] myWeapon;
 	private SortFrame appFrame;
+	private ArrayList<Integer> intArrayList;
 	private long startTime;
 	private long endTime;
 	private long sortTime;
@@ -28,6 +31,7 @@ public class SortController
 	{
 		baseController = new SortingMachine();
 		baseFrame = new SortFrame(this);
+		intArrayList = new ArrayList<Integer>();
 	}
 	
 	public void start()
@@ -62,6 +66,34 @@ public class SortController
 //		 * tells the time it took to sort the array
 //		 */
 		fillTheArrays(100, 100, 100, 100, 100, 100);
+		
+//		fillIntArraysWithSame();
+//		
+//		System.out.println(baseController.displayTheArray(integers));
+//		System.out.println(baseController.displayTheArray(intArrayList));
+//		baseController.selectionSort(integers);
+//		baseController.selectionSort(intArrayList);
+//		
+//		fillIntArraysWithSame();
+//		
+//		System.out.println(baseController.displayTheArray(integers));
+//		System.out.println(baseController.displayTheArray(intArrayList));
+//		startTime = System.currentTimeMillis();
+//		baseController.quickSort(integers,0,integers.length-1);
+//		endTime= System.currentTimeMillis();
+//		sortTime = endTime-startTime;
+//		System.out.println("int array");
+//		System.out.println(baseController.sortingTime(sortTime));
+//		
+//		startTime = System.currentTimeMillis();
+//		baseController.quickSort(intArrayList,0,intArrayList.size()-1);
+//		endTime= System.currentTimeMillis();
+//		sortTime = endTime-startTime;
+//		System.out.println("int array list");
+//		System.out.println(baseController.sortingTime(sortTime));
+		
+//		System.out.println(baseController.displayTheArray(integers));
+//		System.out.println(baseController.displayTheArray(intArrayList));
 //		
 //		/**
 //		 * prints the numbers inside the number array
@@ -109,13 +141,46 @@ public class SortController
 //		System.out.println(baseController.displayTheDoubleArray(reals));
 	}
 
+	private void fillIntArraysWithSame()
+	{
+
+		
+		startTime = System.currentTimeMillis();
+//		String displayInt = "";
+		integers = new int [10000];
+		int randomAdded = 0;
+		for(int start = 0 ; start < integers.length; start++)
+		{
+			randomAdded = (int) (Math.random() * 500);
+			integers[start] = randomAdded;
+			intArrayList.add(randomAdded);
+//			displayInt += "" +integers[start]+ ", ";
+			
+		}
+		endTime = System.currentTimeMillis();
+		sortTime = endTime - startTime;
+		
+	}
+
+//	private void fillArrayList()
+//	{
+//		fillIntArrayList();
+//		
+//	}
+//
+//	private void fillIntArrayList()
+//	{
+//		
+//		
+//	}
+
 	/**
 	 * fills all of the arrays
 	 */
 	public void fillTheArrays(int sizeOfIntArray, int randomizationOfIntArray, int doubleArraySize, int wordArraySize, int weaponArraySize, int rpsArraySize)
 	{
 		fillTheIntArray(sizeOfIntArray, randomizationOfIntArray);
-//		fillTheDoubleArray(doubleArraySize);
+		fillTheDoubleArray(doubleArraySize);
 		fillTheStringArray(wordArraySize);
 		fillTheWeaponArray(weaponArraySize);
 //		fillTheRPSArray(rpsArraySize);
@@ -205,18 +270,17 @@ public class SortController
 
 	private void fillTheDoubleArray(int arraySize)
 	{
-		startTime = System.currentTimeMillis();
+		
 //		String displayInt = "";
 		reals = new double [arraySize];
-		for(int start = 0 ; start < integers.length-1; start++)
+		for(int start = 0 ; start < reals.length; start++)
 		{
-			reals[start] = (Math.random() * 10);
+			reals[start] = (Math.random() * 3000);
 			
 //			displayInt += "" +integers[start]+ ", ";
 			
 		}
-		endTime = System.currentTimeMillis();
-		sortTime = endTime - startTime;
+		
 //		System.out.println(displayInt);
 		
 	}
@@ -450,6 +514,46 @@ public class SortController
 	public void setIntegers(int[] integers)
 	{
 		this.integers = integers;
+	}
+
+	public String[] getRpsWins()
+	{
+		return rpsWins;
+	}
+
+	public double[] getReals()
+	{
+		return reals;
+	}
+
+	public String[] getWords()
+	{
+		return words;
+	}
+
+	public Weapon[] getMyWeapon()
+	{
+		return myWeapon;
+	}
+
+	public void setRpsWins(String[] rpsWins)
+	{
+		this.rpsWins = rpsWins;
+	}
+
+	public void setReals(double[] reals)
+	{
+		this.reals = reals;
+	}
+
+	public void setWords(String[] words)
+	{
+		this.words = words;
+	}
+
+	public void setMyWeapon(Weapon[] myWeapon)
+	{
+		this.myWeapon = myWeapon;
 	}
 	
 	
